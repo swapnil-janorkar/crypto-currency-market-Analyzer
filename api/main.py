@@ -15,8 +15,12 @@ from __future__ import annotations
 
 from typing import Any
 
+from pathlib import Path
+
 from fastapi import Depends, FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from loguru import logger
 from sqlalchemy.orm import Session
 
@@ -31,6 +35,8 @@ from visualization.chart_generator import (
     generate_price_chart_data,
     generate_volume_spike_data,
 )
+
+FRONTEND_DIR = Path(__file__).resolve().parents[1] / "frontend" / "dist"
 
 
 # ── App Setup ──────────────────────────────────────────────────────────────────
@@ -48,6 +54,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+app.mount("/static", StaticFiles(directory=str(FRONTEND_DIR)), name="static")
 
 
 @app.on_event("startup")
@@ -79,6 +88,14 @@ def root() -> dict:
 @app.get("/health", tags=["Health"])
 def health() -> dict:
     return {"status": "healthy"}
+
+
+@app.get("/app", include_in_schema=False)
+def dashboard() -> FileResponse:
+    index_path = FRONTEND_DIR / "index.html"
+    if not index_path.exists():
+        raise HTTPException(status_code=404, detail="Dashboard assets missing.")
+    return FileResponse(index_path)
 
 
 # ── 1. Live Data ───────────────────────────────────────────────────────────────
