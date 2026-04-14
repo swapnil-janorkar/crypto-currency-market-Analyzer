@@ -1,97 +1,20 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Crypto Market Analyzer</title>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/app/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CryptoSight</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/static/style.css" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" crossorigin src="/app/assets/index-BDTDDDOP.js"></script>
+    <link rel="stylesheet" crossorigin href="/app/assets/index-DT9Mv0fk.css">
   </head>
   <body>
-    <div class="page">
-      <header class="hero">
-        <div>
-          <p class="eyebrow">Crypto Compass</p>
-          <h1>Calm, contextual market intelligence.</h1>
-          <p class="subhead">
-            Live prices, thoughtful trends, and gentle narratives woven into a single view.
-          </p>
-        </div>
-        <div class="hero-chip">
-          <span id="live-timestamp">Syncing prices …</span>
-          <span>Live · refreshed every minute</span>
-        </div>
-      </header>
-
-      <main class="content">
-        <section class="section">
-          <div class="section-head">
-            <div>
-              <p class="eyebrow">Live snapshot</p>
-              <h2>Market breadth</h2>
-            </div>
-            <button id="refresh-btn" class="ghost-btn" type="button">Refresh</button>
-          </div>
-          <div id="live-cards" class="card-grid" aria-live="polite"></div>
-        </section>
-
-        <section class="section">
-          <div class="section-head">
-            <div>
-              <p class="eyebrow">Coin focus</p>
-              <h2 id="coin-title">—</h2>
-            </div>
-            <select id="coin-select" aria-label="Select coin"></select>
-          </div>
-          <div class="panel-grid">
-            <article class="panel-card calm-card">
-              <p class="label">Prediction (XGBoost)</p>
-              <h3 id="prediction-price">—</h3>
-              <p id="prediction-trend" class="small">Awaiting data …</p>
-              <p id="prediction-change" class="small muted">—</p>
-              <div id="prediction-meta" class="prediction-meta">
-                <span>Confidence · —</span>
-                <span>Target · —</span>
-              </div>
-            </article>
-            <article class="panel-card calm-card">
-              <p class="label">Narrative</p>
-              <p id="insight-text" class="insight-text">Loading insight …</p>
-            </article>
-          </div>
-
-          <div class="chart-wrapper">
-            <canvas id="price-chart" height="320"></canvas>
-            <div id="chart-legend" class="chart-legend">—</div>
-          </div>
-        </section>
-
-        <section class="section">
-          <div class="section-head">
-            <div>
-              <p class="eyebrow">Market pulse</p>
-              <h2>Dominance &amp; heat</h2>
-            </div>
-          </div>
-          <div class="market-grid">
-            <div class="dominance-card">
-              <p class="label">Market dominance</p>
-              <div id="dominance-list" class="dominance-list"></div>
-            </div>
-            <div class="dominance-card">
-              <p class="label">7-day heat</p>
-              <div id="heatmap" class="heatmap-grid"></div>
-            </div>
-          </div>
-        </section>
-      </main>
-    </div>
-    <script src="/static/app.js" type="module"></script>
+    <div id="root"></div>
   </body>
 </html>

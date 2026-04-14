@@ -1,0 +1,222 @@
+:root {
+  --paper: #fbf7ef;
+  --paper-2: #f4efe4;
+  --ink: #14110f;
+  --ink-2: #2b2623;
+  --muted: #60564f;
+  --rule: rgba(20, 17, 15, 0.14);
+  --shadow: 0 16px 40px rgba(10, 8, 7, 0.14);
+  --accent: #b91c1c;
+  --positive: #0f766e;
+  --negative: #b42318;
+
+  --radius: 18px;
+
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[data-theme='dark'] {
+  --paper: #0b0a09;
+  --paper-2: #131110;
+  --ink: #f4f0e8;
+  --ink-2: #e7dfd3;
+  --muted: #b5aa9a;
+  --rule: rgba(244, 240, 232, 0.16);
+  --shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+  --accent: #f43f5e;
+  --positive: #2dd4bf;
+  --negative: #fb7185;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(1200px 600px at 10% -10%, rgba(185, 28, 28, 0.12), transparent 55%),
+    radial-gradient(900px 450px at 80% 0%, rgba(15, 118, 110, 0.12), transparent 50%),
+    var(--paper);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+}
+
+.container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 28px 16px 64px;
+}
+
+.masthead {
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.15));
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+[data-theme='dark'] .masthead {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+}
+
+.mastheadTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.brandTitle {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-size: 20px;
+}
+
+.brandTag {
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.navLink {
+  border: 1px solid transparent;
+  padding: 8px 10px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.navLinkActive {
+  border-color: var(--rule);
+  color: var(--ink);
+  background: rgba(185, 28, 28, 0.08);
+}
+
+.navBtn {
+  border: 1px solid var(--rule);
+  background: rgba(255, 255, 255, 0.35);
+  color: var(--ink);
+  padding: 8px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+[data-theme='dark'] .navBtn {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.contentGrid {
+  padding: 18px 16px 18px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 14px 0 10px;
+}
+
+.sectionTitle {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 18px;
+  margin: 0;
+}
+
+.sectionKicker {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 12px;
+}
+
+.card {
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.38);
+  padding: 14px;
+}
+
+[data-theme='dark'] .card {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px dashed var(--rule);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.pos {
+  color: var(--positive);
+}
+.neg {
+  color: var(--negative);
+}
+
+@media (max-width: 860px) {
+  .container {
+    padding-top: 16px;
+  }
+  .nav {
+    justify-content: flex-start;
+  }
+  .grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+

@@ -1,0 +1,139 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\swapn\OneDrive\Desktop\data_science\crypto_predictor\crypto_predictor\ml_engine\train_model.py", line 16, in <module>
+    import pandas as pd
+  File "C:\Users\swapn\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\__init__.py", line 49, in <module>
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\swapn\OneDrive\Desktop\data_science\crypto_predictor\crypto_predictor\ml_engine\train_model.py", line 16, in <module>
+    import pandas as pd
+  File "C:\Users\swapn\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\__init__.py", line 49, in <module>
+    from pandas._config import (
+  File "C:\Users\swapn\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\_config\__init__.py", line 20, in <module>
+    from pandas._config import (
+  File "C:\Users\swapn\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\_config\__init__.py", line 20, in <module>
+    from pandas._config import config
+  File "C:\Users\swapn\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\_config\config.py", line 68, in <module>
+    from pandas._config import config
+  File "C:\Users\swapn\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\_config\config.py", line 68, in <module>
+    from pandas._typing import (
+    from pandas._typing import (
+  File "C:\Users\swapn\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\_typing.py", line 198, in <module>
+  File "C:\Users\swapn\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\_typing.py", line 198, in <module>
+    np.random.Generator,
+    ^^^^^^^^^
+  File "C:\Users\swapn\AppData\Local\Programs\Python\Python312\Lib\site-packages\numpy\__init__.py", line 353, in __getattr__
+    np.random.Generator,
+    ^^^^^^^^^
+  File "C:\Users\swapn\AppData\Local\Programs\Python\Python312\Lib\site-packages\numpy\__init__.py", line 353, in __getattr__
+    import numpy.random as random
+  File "C:\Users\swapn\AppData\Local\Programs\Python\Python312\Lib\site-packages\numpy\random\__init__.py", line 180, in <module>
+    import numpy.random as random
+  File "C:\Users\swapn\AppData\Local\Programs\Python\Python312\Lib\site-packages\numpy\random\__init__.py", line 180, in <module>
+    from . import _pickle
+  File "C:\Users\swapn\AppData\Local\Programs\Python\Python312\Lib\site-packages\numpy\random\_pickle.py", line 2, in <module>
+    from . import _pickle
+  File "C:\Users\swapn\AppData\Local\Programs\Python\Python312\Lib\site-packages\numpy\random\_pickle.py", line 3, in <module>
+    from ._philox import Philox
+    from .mtrand import RandomState
+  File "numpy/random/mtrand.pyx", line 1, in init numpy.random.mtrand
+ImportError: DLL load failed while importing _philox: The paging file is too small for this operation to complete.
+ImportError: DLL load failed while importing _bounded_integers: The paging file is too small for this operation to complete.
+2026-04-04 10:42:46.215 | INFO     | __main__:train_random_forest:48 - [ripple] Training RandomForest ...
+2026-04-04 10:42:46.215 | INFO     | __main__:train_random_forest:48 - [solana] Training RandomForest ...
+2026-04-04 10:42:46.215 | INFO     | data_pipeline.preprocess:clean_market_data:49 - Loading 365d of data for ripple …
+2026-04-04 10:42:46.215 | INFO     | data_pipeline.preprocess:clean_market_data:49 - Loading 365d of data for solana …
+2026-04-04 10:42:46.223 | INFO     | __main__:train_random_forest:48 - [binancecoin] Training RandomForest ...
+2026-04-04 10:42:46.223 | INFO     | data_pipeline.preprocess:clean_market_data:49 - Loading 365d of data for binancecoin …
+2026-04-04 10:42:46.290 | INFO     | data_pipeline.preprocess:clean_market_data:105 - Cleaned ripple: 22 \u2192 22 rows (0 dropped)
+2026-04-04 10:42:46.290 | INFO     | data_pipeline.preprocess:clean_market_data:105 - Cleaned binancecoin: 22 \u2192 22 rows (0 dropped)
+2026-04-04 10:42:46.290 | INFO     | data_pipeline.preprocess:clean_market_data:105 - Cleaned solana: 22 \u2192 22 rows (0 dropped)
+C:\Users\swapn\OneDrive\Desktop\data_science\crypto_predictor\crypto_predictor\data_pipeline\feature_engineering.py:106: FutureWarning: DataFrame.fillna with 'method' is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.
+  df = df.fillna(method="ffill").fillna(method="bfill").fillna(0)
+C:\Users\swapn\OneDrive\Desktop\data_science\crypto_predictor\crypto_predictor\data_pipeline\feature_engineering.py:106: FutureWarning: DataFrame.fillna with 'method' is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.
+  df = df.fillna(method="ffill").fillna(method="bfill").fillna(0)
+C:\Users\swapn\OneDrive\Desktop\data_science\crypto_predictor\crypto_predictor\data_pipeline\feature_engineering.py:106: FutureWarning: DataFrame.fillna with 'method' is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.
+  df = df.fillna(method="ffill").fillna(method="bfill").fillna(0)
+2026-04-04 10:42:46.316 | INFO     | data_pipeline.feature_engineering:feature_engineering:109 - Feature engineering complete: 22 \u2192 21 rows, 29 columns
+2026-04-04 10:42:46.316 | INFO     | data_pipeline.feature_engineering:feature_engineering:109 - Feature engineering complete: 22 \u2192 21 rows, 29 columns
+2026-04-04 10:42:46.316 | INFO     | data_pipeline.feature_engineering:feature_engineering:109 - Feature engineering complete: 22 \u2192 21 rows, 29 columns
+2026-04-04 10:42:46.714 | INFO     | ml_engine.save_model:save_sklearn_model:49 - Model saved \u2192 models\ripple\random_forest.joblib
+2026-04-04 10:42:46.714 | SUCCESS  | __main__:train_random_forest:65 - [ripple] RF — RMSE=0.03  R²=-1.6996
+2026-04-04 10:42:46.714 | INFO     | __main__:train_xgboost:70 - [ripple] Training XGBoost ...
+2026-04-04 10:42:46.714 | INFO     | data_pipeline.preprocess:clean_market_data:49 - Loading 365d of data for ripple …
+2026-04-04 10:42:46.714 | INFO     | ml_engine.save_model:save_sklearn_model:49 - Model saved \u2192 models\solana\random_forest.joblib
+2026-04-04 10:42:46.714 | SUCCESS  | __main__:train_random_forest:65 - [solana] RF — RMSE=3.42  R²=-1.1876
+2026-04-04 10:42:46.714 | INFO     | __main__:train_xgboost:70 - [solana] Training XGBoost ...
+2026-04-04 10:42:46.714 | INFO     | data_pipeline.preprocess:clean_market_data:49 - Loading 365d of data for solana …
+2026-04-04 10:42:46.714 | INFO     | ml_engine.save_model:save_sklearn_model:49 - Model saved \u2192 models\binancecoin\random_forest.joblib
+2026-04-04 10:42:46.714 | SUCCESS  | __main__:train_random_forest:65 - [binancecoin] RF — RMSE=31.91  R²=-2.1713
+2026-04-04 10:42:46.714 | INFO     | __main__:train_xgboost:70 - [binancecoin] Training XGBoost ...
+2026-04-04 10:42:46.714 | INFO     | data_pipeline.preprocess:clean_market_data:49 - Loading 365d of data for binancecoin …
+2026-04-04 10:42:46.714 | INFO     | data_pipeline.preprocess:clean_market_data:105 - Cleaned ripple: 22 \u2192 22 rows (0 dropped)
+2026-04-04 10:42:46.723 | INFO     | data_pipeline.preprocess:clean_market_data:105 - Cleaned solana: 22 \u2192 22 rows (0 dropped)
+2026-04-04 10:42:46.723 | INFO     | data_pipeline.preprocess:clean_market_data:105 - Cleaned binancecoin: 22 \u2192 22 rows (0 dropped)
+C:\Users\swapn\OneDrive\Desktop\data_science\crypto_predictor\crypto_predictor\data_pipeline\feature_engineering.py:106: FutureWarning: DataFrame.fillna with 'method' is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.
+  df = df.fillna(method="ffill").fillna(method="bfill").fillna(0)
+C:\Users\swapn\OneDrive\Desktop\data_science\crypto_predictor\crypto_predictor\data_pipeline\feature_engineering.py:106: FutureWarning: DataFrame.fillna with 'method' is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.
+  df = df.fillna(method="ffill").fillna(method="bfill").fillna(0)
+C:\Users\swapn\OneDrive\Desktop\data_science\crypto_predictor\crypto_predictor\data_pipeline\feature_engineering.py:106: FutureWarning: DataFrame.fillna with 'method' is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.
+  df = df.fillna(method="ffill").fillna(method="bfill").fillna(0)
+2026-04-04 10:42:46.740 | INFO     | data_pipeline.feature_engineering:feature_engineering:109 - Feature engineering complete: 22 \u2192 21 rows, 29 columns
+2026-04-04 10:42:46.741 | INFO     | data_pipeline.feature_engineering:feature_engineering:109 - Feature engineering complete: 22 \u2192 21 rows, 29 columns
+2026-04-04 10:42:46.742 | INFO     | data_pipeline.feature_engineering:feature_engineering:109 - Feature engineering complete: 22 \u2192 21 rows, 29 columns
+2026-04-04 10:42:47.038 | INFO     | ml_engine.save_model:save_sklearn_model:49 - Model saved \u2192 models\ripple\xgboost.joblib
+2026-04-04 10:42:47.038 | SUCCESS  | __main__:train_xgboost:87 - [ripple] XGB — RMSE=0.04  R²=-2.2980
+2026-04-04 10:42:47.142 | INFO     | ml_engine.save_model:save_sklearn_model:49 - Model saved \u2192 models\solana\xgboost.joblib
+2026-04-04 10:42:47.142 | SUCCESS  | __main__:train_xgboost:87 - [solana] XGB — RMSE=4.17  R²=-2.2544
+2026-04-04 10:42:47.142 | INFO     | ml_engine.save_model:save_sklearn_model:49 - Model saved \u2192 models\binancecoin\xgboost.joblib
+2026-04-04 10:42:47.143 | SUCCESS  | __main__:train_xgboost:87 - [binancecoin] XGB — RMSE=32.51  R²=-2.2914
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1775279608.860110   15668 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1775279608.860066   14880 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1775279608.860063   17564 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1775279622.305092   17564 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1775279622.305496   14880 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1775279622.305083   15668 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-04-04 10:43:46.933 | INFO     | __main__:train_lstm:105 - [solana] Training LSTM ...
+2026-04-04 10:43:46.933 | INFO     | data_pipeline.preprocess:clean_market_data:49 - Loading 365d of data for solana …
+2026-04-04 10:43:46.933 | INFO     | __main__:train_lstm:105 - [ripple] Training LSTM ...
+2026-04-04 10:43:46.933 | INFO     | data_pipeline.preprocess:clean_market_data:49 - Loading 365d of data for ripple …
+2026-04-04 10:43:46.933 | INFO     | __main__:train_lstm:105 - [binancecoin] Training LSTM ...
+2026-04-04 10:43:46.933 | INFO     | data_pipeline.preprocess:clean_market_data:49 - Loading 365d of data for binancecoin …
+2026-04-04 10:43:46.943 | INFO     | data_pipeline.preprocess:clean_market_data:105 - Cleaned solana: 22 \u2192 22 rows (0 dropped)
+2026-04-04 10:43:46.943 | INFO     | data_pipeline.preprocess:clean_market_data:105 - Cleaned ripple: 22 \u2192 22 rows (0 dropped)
+2026-04-04 10:43:46.947 | INFO     | data_pipeline.preprocess:clean_market_data:105 - Cleaned binancecoin: 22 \u2192 22 rows (0 dropped)
+2026-04-04 10:43:46.948 | INFO     | __main__:train_lstm:119 - [ripple] LSTM look_back=7 (data rows=22)
+2026-04-04 10:43:46.948 | INFO     | __main__:train_lstm:119 - [solana] LSTM look_back=7 (data rows=22)
+2026-04-04 10:43:46.948 | INFO     | __main__:train_lstm:119 - [binancecoin] LSTM look_back=7 (data rows=22)
+I0000 00:00:1775279626.976095   17564 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: SSE3 SSE4.1 SSE4.2 AVX AVX2 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+I0000 00:00:1775279626.976124   15668 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: SSE3 SSE4.1 SSE4.2 AVX AVX2 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+I0000 00:00:1775279626.976257   14880 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: SSE3 SSE4.1 SSE4.2 AVX AVX2 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+C:\Users\swapn\AppData\Local\Programs\Python\Python312\Lib\site-packages\keras\src\layers\rnn\rnn.py:199: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(**kwargs)
+C:\Users\swapn\AppData\Local\Programs\Python\Python312\Lib\site-packages\keras\src\layers\rnn\rnn.py:199: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(**kwargs)
+C:\Users\swapn\AppData\Local\Programs\Python\Python312\Lib\site-packages\keras\src\layers\rnn\rnn.py:199: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(**kwargs)
+WARNING:tensorflow:TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+WARNING:tensorflow:TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+WARNING:tensorflow:TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+2026-04-04 10:43:48.863 | ERROR    | __main__:train_all_models:168 - [ripple] train_lstm failed: 
+{'model_name': 'random_forest', 'rmse': 0.032607831141614356, 'mae': 0.02912424166666666, 'r2': -1.6995643249570858, 'directional_accuracy': 0.6666666666666666}
+{'model_name': 'xgboost', 'rmse': 0.03604117798084329, 'mae': 0.03142790822982788, 'r2': -2.2979784070704565, 'directional_accuracy': 0.6666666666666666}
+2026-04-04 10:43:49.054 | ERROR    | __main__:train_all_models:168 - [solana] train_lstm failed: 
+2026-04-04 10:43:49.058 | ERROR    | __main__:train_all_models:168 - [binancecoin] train_lstm failed: 
+{'model_name': 'random_forest', 'rmse': 3.4198506645342692, 'mae': 3.0188263888889075, 'r2': -1.18755473483477, 'directional_accuracy': 0.0}
+{'model_name': 'xgboost', 'rmse': 4.171248910738722, 'mae': 3.6292129516601577, 'r2': -2.2544444034620046, 'directional_accuracy': 0.0}
+{'model_name': 'random_forest', 'rmse': 31.907064558346324, 'mae': 28.419426934523585, 'r2': -2.171263120724397, 'directional_accuracy': 0.3333333333333333}
+{'model_name': 'xgboost', 'rmse': 32.50561359219405, 'mae': 28.7365399169922, 'r2': -2.2913594312658203, 'directional_accuracy': 0.6666666666666666}

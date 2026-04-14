@@ -29,6 +29,13 @@ class Settings(BaseSettings):
     # ── OpenAI / RAG ──────────────────────────────────────────────────────────
     openai_api_key: str = ""
 
+    # ── Auth (demo) ───────────────────────────────────────────────────────────
+    auth_jwt_secret: str = "dev-only-change-me"
+    auth_jwt_algorithm: str = "HS256"
+    auth_access_token_expire_minutes: int = 60 * 24
+    auth_demo_username: str = "demo"
+    auth_demo_password: str = "demo123"
+
     # ── App Behaviour ─────────────────────────────────────────────────────────
     data_refresh_interval_minutes: int = 5
     model_retrain_interval_hours: int = 1

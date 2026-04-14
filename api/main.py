@@ -13,19 +13,22 @@ ReDoc       →  http://localhost:8000/redoc
 
 from __future__ import annotations
 
+from datetime import timedelta
 from typing import Any
 
 from pathlib import Path
 
 from fastapi import Depends, FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from loguru import logger
+from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
+from api.auth import AuthUser, create_access_token, get_current_user, hash_password, verify_password
 from config import settings
-from database.db_connector import get_db, init_db
+from database.db_connector import SessionLocal, User, get_db, init_db
 from data_pipeline.fetch_data import fetch_live_data
 from insight_engine.rag_pipeline import generate_market_insight
 from prediction_service.predictor import predict_price, save_prediction
@@ -55,14 +58,36 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
+# Mount frontend static files (legacy + SPA-friendly)
+# - `/static/*` supports the current static bundle references
+# - `/app/*` serves the frontend with HTML fallback (SPA-ready)
 app.mount("/static", StaticFiles(directory=str(FRONTEND_DIR)), name="static")
+app.mount("/app", StaticFiles(directory=str(FRONTEND_DIR), html=True), name="app")
 
 
 @app.on_event("startup")
 async def startup_event():
     logger.info("Initialising database …")
     init_db()
+    try:
+        db = SessionLocal()
+        existing = db.query(User).filter(User.username == settings.auth_demo_username).first()
+        if not existing:
+            db.add(
+                User(
+                    username=settings.auth_demo_username,
+                    password_hash=hash_password(settings.auth_demo_password),
+                )
+            )
+            db.commit()
+            logger.info("Seeded demo user for authentication.")
+    except Exception as exc:
+        logger.warning(f"Auth demo seed failed: {exc}")
+    finally:
+        try:
+            db.close()
+        except Exception:
+            pass
     logger.info("CryptoPredictor API ready.")
 
 
@@ -91,17 +116,44 @@ def health() -> dict:
 
 
 @app.get("/app", include_in_schema=False)
-def dashboard() -> FileResponse:
-    index_path = FRONTEND_DIR / "index.html"
-    if not index_path.exists():
-        raise HTTPException(status_code=404, detail="Dashboard assets missing.")
-    return FileResponse(index_path)
+def dashboard() -> RedirectResponse:
+    # Ensure `/app` becomes `/app/` so relative routing and asset paths behave.
+    return RedirectResponse(url="/app/", status_code=307)
+
+
+class LoginRequest(BaseModel):
+    username: str
+    password: str
+
+
+class LoginResponse(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
+    username: str
+
+
+@app.post("/auth/login", tags=["Auth"], response_model=LoginResponse)
+def login(payload: LoginRequest, db: Session = Depends(get_db)) -> LoginResponse:
+    user = db.query(User).filter(User.username == payload.username).first()
+    if not user or not verify_password(payload.password, user.password_hash):
+        raise HTTPException(status_code=401, detail="Invalid username or password")
+
+    token = create_access_token(
+        subject=user.username,
+        expires_delta=timedelta(minutes=settings.auth_access_token_expire_minutes),
+    )
+    return LoginResponse(access_token=token, username=user.username)
+
+
+@app.get("/auth/me", tags=["Auth"])
+def me(current_user: AuthUser = Depends(get_current_user)) -> dict[str, Any]:
+    return {"status": "success", "user": {"id": current_user.id, "username": current_user.username}}
 
 
 # ── 1. Live Data ───────────────────────────────────────────────────────────────
 
 @app.get("/live-data/{coin}", tags=["Market Data"])
-def get_live_data(coin: str) -> dict[str, Any]:
+def get_live_data(coin: str, _: AuthUser = Depends(get_current_user)) -> dict[str, Any]:
     """
     Fetch the latest live market data for a single coin.
 
@@ -121,7 +173,7 @@ def get_live_data(coin: str) -> dict[str, Any]:
 
 
 @app.get("/live-data", tags=["Market Data"])
-def get_all_live_data() -> dict[str, Any]:
+def get_all_live_data(_: AuthUser = Depends(get_current_user)) -> dict[str, Any]:
     """Fetch live data for all supported coins."""
     try:
         rows = fetch_live_data(settings.supported_coins)
@@ -136,6 +188,7 @@ def get_all_live_data() -> dict[str, Any]:
 def get_prediction(
     coin: str,
     model: str = Query(default="xgboost", enum=["xgboost", "random_forest", "lstm"]),
+    _: AuthUser = Depends(get_current_user),
 ) -> dict[str, Any]:
     """
     Generate a next-price prediction for the given coin.
@@ -163,7 +216,7 @@ def get_prediction(
 # ── 3. Insights ────────────────────────────────────────────────────────────────
 
 @app.get("/insights/{coin}", tags=["Insights"])
-def get_insights(coin: str) -> dict[str, Any]:
+def get_insights(coin: str, _: AuthUser = Depends(get_current_user)) -> dict[str, Any]:
     """
     Generate a RAG-powered explanation of why the coin price moved.
 
@@ -205,6 +258,7 @@ def get_insights(coin: str) -> dict[str, Any]:
 def get_visualizations(
     coin: str,
     days: int = Query(default=30, ge=1, le=365),
+    _: AuthUser = Depends(get_current_user),
 ) -> dict[str, Any]:
     """
     Retrieve chart data bundles for a coin.
@@ -225,7 +279,7 @@ def get_visualizations(
 
 
 @app.get("/visualizations/market/heatmap", tags=["Visualizations"])
-def get_heatmap(days: int = Query(default=7, ge=1, le=30)) -> dict[str, Any]:
+def get_heatmap(days: int = Query(default=7, ge=1, le=30), _: AuthUser = Depends(get_current_user)) -> dict[str, Any]:
     """7-day price change heatmap across all supported coins."""
     try:
         return {"status": "success", "data": generate_heatmap_data(days=days)}
@@ -234,7 +288,7 @@ def get_heatmap(days: int = Query(default=7, ge=1, le=30)) -> dict[str, Any]:
 
 
 @app.get("/visualizations/market/dominance", tags=["Visualizations"])
-def get_market_dominance() -> dict[str, Any]:
+def get_market_dominance(_: AuthUser = Depends(get_current_user)) -> dict[str, Any]:
     """Market-cap dominance pie-chart data."""
     try:
         return {"status": "success", "data": generate_market_share_data()}
